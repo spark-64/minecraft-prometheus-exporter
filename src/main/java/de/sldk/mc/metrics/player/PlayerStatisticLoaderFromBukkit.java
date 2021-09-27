@@ -59,7 +59,7 @@ public class PlayerStatisticLoaderFromBukkit implements PlayerStatisticLoader {
         try {
             return player.getStatistic(statistic);
         } catch (IllegalArgumentException e) {
-            // Silent exception so we dont spam server logs
+            logger.fine(String.format("Exception fetching statistic %s for player", statistic));
             logger.throwing(getClass().getSimpleName(), "getUntypedStatistic", e);
             return 0;
         }
@@ -85,7 +85,7 @@ public class PlayerStatisticLoaderFromBukkit implements PlayerStatisticLoader {
                 return 0;
             }
         } catch (Exception e) {
-            // Silent exception so we dont spam server logs
+            logger.fine(String.format("Exception fetching statistic %s (type=%s) for player", statistic, statType));
             logger.throwing(getClass().getSimpleName(), "getTypedStatistic", e);
             return 0;
         }
